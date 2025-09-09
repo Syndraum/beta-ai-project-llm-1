@@ -1,12 +1,18 @@
-from .llm_sdk import Small_LLM_Model
+from .LLM_Model import LLM_Model
+
+DEFAULT_QUESTION = "Generate a small json output with at least, a random string and a number."
 
 def main():
-    print("Hello from ai-beta-llm!")
+    model = LLM_Model()
 
-    model = Small_LLM_Model()
-    path = model.get_path_to_vocabulary_json()
-    print(f"vocabulary path: {path}")
-
+    question = input("What kind of json do you want : ")
+    if question == "":
+        question = DEFAULT_QUESTION
+    model.apply_json_creation_template(question)
+    for token_id in model.generate():
+        token = model.decode(token_id)
+        print(f"{token}", end='', flush=True)
+    print()
 
 if __name__ == "__main__":
     main()
