@@ -38,7 +38,7 @@ class LLM_Model:
 		})
 
 	def apply_json_creation_template(self, question: str):
-		instruction = "Your role is to create json file (not a Markdown file). The output must be valid JSON (no trailing commas, no comments). No extra keys or prose are allowed anywhere in the output."
+		instruction = "Your role is to create json object. The output must be valid JSON (no trailing commas, no comments). No extra keys or prose are allowed anywhere in the output."
 		self._apply_default_chat_template(instruction, question)
 
 	def generate(self, max_token: int = QWEN3_DEFAULT_OUTPUT_LENGHT):
