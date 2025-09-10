@@ -37,6 +37,21 @@ class LLM_Model:
 			"question": question
 		})
 
+	def apply_json_function(self, question: str):
+		function_definition = open("./input/functions_definition.json").read()
+		instruction = f"""Your role is to create json object containing the prompt of the user, the function name responding to the prompt and the args of the function.
+		### Functions
+		{function_definition}
+
+		### Examples
+		{{
+			"prompt": "What is the sum of 2 and 3?"
+			"fn_name": "fn_add_numbers",
+			"args": {{ "a": 2.0, "b": 3.0 }}
+		}}
+		"""
+		self._apply_default_chat_template(instruction, question)
+
 	def apply_json_creation_template(self, question: str):
 		instruction = "Your role is to create json object. The output must be valid JSON (no trailing commas, no comments). No extra keys or prose are allowed anywhere in the output."
 		self._apply_default_chat_template(instruction, question)
