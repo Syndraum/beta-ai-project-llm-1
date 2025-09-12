@@ -11,4 +11,5 @@ run:
 clean:
 	uv cache clean
 
-# lint:
+lint:
+	uvx ruff check

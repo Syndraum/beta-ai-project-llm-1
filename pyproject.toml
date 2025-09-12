@@ -11,3 +11,8 @@ dependencies = [
     "torch>=2.8.0",
     "transformers>=4.56.0",
 ]
+
+[tool.ruff]
+extend-exclude = [
+    "src/llm_sdk/*"
+]
